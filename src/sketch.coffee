@@ -33,11 +33,20 @@
     else
       this.data('sketch', new Sketch(this.get(0), key))
       this
-
-  # ## Sketch
-  #
-  # The Sketch class represents an activated drawing canvas. It holds the
-  # state, all relevant data, and all methods related to the plugin.
+	# ## Clear canvas
+    $.fn.clear = ->
+	  sketch = @data('sketch')
+	  if sketch != undefined
+        sketch.context.clearRect 0, 0, sketch.canvas[0].width, sketch.canvas[0].height
+        sketch.context = sketch.el.getContext('2d')
+        sketch.actions = []
+        sketch.action = []
+	  return
+	  
+    # ## Sketch
+    #
+    # The Sketch class represents an activated drawing canvas. It holds the
+    # state, all relevant data, and all methods related to the plugin.
   class Sketch
     # ### new Sketch(el, opts)
     #
