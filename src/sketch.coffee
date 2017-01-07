@@ -204,6 +204,7 @@
     onEvent: (e)->
       switch e.type
         when 'mousedown', 'touchstart'
+          @stopPainting() if @painting
           @startPainting()
           @canvas.trigger("stroke-start", @action)
         when 'mouseup', 'mouseout', 'mouseleave', 'touchend', 'touchcancel'
