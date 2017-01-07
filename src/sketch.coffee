@@ -88,9 +88,9 @@
       # of `#mycanvas` (mycanvas being the ID of your `<canvas>` element to
       # perform actions on the canvas.
       if @options.toolLinks
-        $('body').delegate "[data-sketch-id=\"##{@canvas.attr('id')}\"]", 'click', (e)->
+        $('body').delegate "[data-sketch-id=\"#{@canvas.attr('id')}\"]", 'click', (e)->
           $this = $(this)
-          $canvas = $($this.data('sketch-id'))
+          $canvas = $("#"+$this.data('sketch-id'))
           sketch = $canvas.data('sketch')
           # Tool links are keyed off of HTML5 `data` attributes. The following
           # attributes are supported:
