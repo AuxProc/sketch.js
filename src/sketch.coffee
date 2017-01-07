@@ -140,7 +140,7 @@
 
 # ### sketch.onEvent(e)
 #
-    # *Internal method.* Universal event handler for the canvas. Any mouse or
+# *Internal method.* Universal event handler for the canvas. Any mouse or
 # touch related events are passed through this handler before being passed
 # on to the individual tools.
     onEvent: (e)->
