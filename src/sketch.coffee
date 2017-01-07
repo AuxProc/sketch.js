@@ -33,15 +33,16 @@
     else
       this.data('sketch', new Sketch(this.get(0), key))
       this
-	# ## Clear canvas
-    $.fn.clear = ->
-	  sketch = @data('sketch')
-	  if sketch != undefined
-        sketch.context.clearRect 0, 0, sketch.canvas[0].width, sketch.canvas[0].height
-        sketch.context = sketch.el.getContext('2d')
-        sketch.actions = []
-        sketch.action = []
-	  return
+	  
+# ## Clear canvas
+  $.fn.clear = ->
+	sketch = @data('sketch')
+	if sketch != undefined
+      sketch.context.clearRect 0, 0, sketch.canvas[0].width, sketch.canvas[0].height
+      sketch.context = sketch.el.getContext('2d')
+      sketch.actions = []
+      sketch.action = []
+	return
 	  
     # ## Sketch
     #
