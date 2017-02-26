@@ -41,9 +41,19 @@
       sketch.context.clearRect 0, 0, sketch.canvas[0].width, sketch.canvas[0].height
       sketch.context = sketch.el.getContext('2d')
       sketch.actions = []
-      sketch.action = []
+      sketch.action = null
+      sketch.images = []
     return
- 
+
+  $.fn.loadImage = (data) ->
+    sketch = @data('sketch')
+    if sketch != undefined
+        image = new Image
+        image.onload = ->
+          sketch.images.push image
+          sketch.context.drawImage image, 0, 0
+        image.src = data;
+
     # ## Sketch
     #
     # The Sketch class represents an activated drawing canvas. It holds the
@@ -77,6 +87,7 @@
       @tool = @options.defaultTool
       @actions = []
       @action = null
+      @images = []
 
       @canvas.bind 'click mousedown mouseup mousemove mouseleave mouseout touchstart touchmove touchend touchcancel', @onEvent
       @canvas.bind 'load', @onLoad
@@ -198,6 +209,10 @@
         if this.tool
           $.sketch.tools[this.tool].draw.call sketch, this
       $.sketch.tools[@action.tool].draw.call sketch, @action if @painting && @action
+
+      $.each @images, ->
+        if this
+          sketch.context.drawImage this, 0, 0
 
   # # Tools
   #
